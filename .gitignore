@@ -2,8 +2,8 @@ node_modules/
 npm-debug.log
 
 # Generated data files
-util/out/ExtractedEffectValue.json
-util/out/ExtractedNodeDiscriminator.json
+util/out/ExtractedEffectValues.json
+util/out/ExtractedNodeDiscriminators.json
 util/out/ExtractedNodeEffects.json
 util/out/ExtractedNodeLocations.json
 util/out/ExtractedNodeLocalizations.json
