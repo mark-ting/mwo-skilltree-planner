@@ -3,6 +3,7 @@ MWO Skill Tree Planner
 
 Skill Tree Planner for PGI's MechWarrior Online.
 
+[WIP build hosted on GitHub.](https://mat3049.github.io/mwo-skilltree-planner/)
 ___
 
 Web Application
