@@ -39,7 +39,7 @@ class SkillPlanner {
   }
 
   initGrid () {
-    let hexGrid = new HexGrid(48, 16, new Point(0, 160))
+    let hexGrid = new HexGrid(48, 16, new Point(-96, 128))
     hexGrid.bindCanvas(document.getElementById('hex'))
     this.hexGrid = hexGrid
 
@@ -268,7 +268,7 @@ class SkillPlanner {
 
       if (!active.has(root)) {
         this.orphan = this.active
-        this.possible = new Set(root)
+        this.possible = new Set(stack)
         return
       }
 

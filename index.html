@@ -4,32 +4,50 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SkillTreeTest</title>
+  <title>MWO Skill Tree Planner</title>
   <link rel="stylesheet" href="./res/index.css">
 </head>
 
 <body>
   <div class="sidebar">
-    <button class="section-btn" id="toggle-firepower">Firepower</button>
-    <button class="section-btn" id="toggle-survival">Survival</button>
-    <button class="section-btn" id="toggle-mobility">Mobility</button>
-    <button class="section-btn" id="toggle-jumpjets">Jump Jets</button>
-    <button class="section-btn" id="toggle-operations">Operations</button>
-    <button class="section-btn" id="toggle-sensors">Sensors</button>
-    <button class="section-btn" id="toggle-auxiliary">Auxiliary</button>
-    <button id="clear-section">Clear Section</button>
-    <button id="clear-all">CLEAR ALL</button>
+    <form>
+      <div class="category-switch">
+        <input type="radio" id="toggle-firepower" name="category_switch" value="Firepower" checked/>
+        <label for="toggle-firepower">Firepower</label>
+
+        <input type="radio" id="toggle-survival" name="category_switch" value="Survival" />
+        <label for="toggle-survival">Survival</label>
+
+        <input type="radio" id="toggle-mobility" name="category_switch" value="Mobility" />
+        <label for="toggle-mobility">Mobility</label>
+
+        <input type="radio" id="toggle-jumpjets" name="category_switch" value="Firepower"/>
+        <label for="toggle-jumpjets">Jump Jets</label>
+
+        <input type="radio" id="toggle-operations" name="category_switch" value="Survival" />
+        <label for="toggle-operations">Operations</label>
+
+        <input type="radio" id="toggle-sensors" name="category_switch" value="Sensors" />
+        <label for="toggle-sensors">Sensors</label>
+
+        <input type="radio" id="toggle-auxiliary" name="category_switch" value="Mobility" />
+        <label for="toggle-auxiliary">Auxiliary</label>
+      </div>
+    </form>
+
+    <button class="sidebar-btn btn-danger" id="clear-section">Clear Section</button>
+    <button class="sidebar-btn btn-danger" id="clear-all">Clear All Sections</button>
+    <label for="active-nodes">Active Nodes</label>
     <input type="number" class="stat-display" id="active-nodes" value="0" readonly />
   </div>
-
   <div class="planner">
-    <canvas class="grid" id="hex" width="1600" height="900"></canvas>
-    <canvas class="grid" id="line" width="1600" height="900"></canvas>
+    <canvas class="grid" id="hex" width="1400" height="900"></canvas>
+    <canvas class="grid" id="line" width="1400" height="900"></canvas>
   </div>
-
   <script src="./res/setutils.js"></script>
   <script src="./res/HexGrid.js"></script>
   <script src="./res/stringwrap.js"></script>
   <script src="./res/SkillPlanner.js"></script>
 </body>
+
 </html>

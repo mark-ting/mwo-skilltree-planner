@@ -4,27 +4,80 @@ body {
   padding: 0;
   height: 100%;
   background-color: black;
+  font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
 .sidebar {
+  background-color: gray;
   float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
   height: 100%;
-  width: 150px;
+  width: 200px;
 }
 
-.section-btn {
-  width: 120px;
-  display: block;
+.sidebar-btn {
+  padding: 9px;
+}
+
+.btn-danger {
+  color: white;
+  font-weight: bolder;
+  background-color: rgba(192, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+  background-color: rgba(64, 0, 0, 0.8);
+}
+
+.btn-danger:click {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Hide radio button */
+.category-switch input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 1px;
+  width: 1px;
+  border: 0;
+}
+
+.category-switch label {
+  text-align: center;
+  display: inline-block;
+  width: 180px;
+  background-color: rgb(192, 192, 192);
+  color: rgba(0, 0, 0, 0.6);
+  padding: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.category-switch label:hover {
+  background-color: rgb(128, 128, 128);
+}
+
+.category-switch input:checked+label {
+  color: black;
+  font-weight: bold;
+  background-color: rgb(0, 192, 255);
 }
 
 .planner {
-  position: relative;
   height: 100%;
+  position: relative;
   overflow-x: auto;
 }
 
-.grid {
+canvas {
   position: absolute;
-  top: 0;
+  margin-left: auto;
+  margin-right: auto;
   left: 0;
+  right: 0;
 }
