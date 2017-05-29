@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+}
+
+.sidebar {
+  float: left;
+  height: 100%;
+  width: 150px;
+}
+
+.section-btn {
+  width: 120px;
+  display: block;
+}
+
+.planner {
+  position: relative;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

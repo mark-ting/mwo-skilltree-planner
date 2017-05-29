@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- EXAMPLE
+<MechSkillTree>
+	<Node names="LaserRange1">
+		<Effect name="isnonpulselaser_range_multiplier" value="0.025">
+			<Faction name="IS" value="0.025">
+				<WeightClass name="Light" value="0.025">
+					<Tonnage name="35" value="0.03">
+						<Mech name="Raven" value="0.035" />
+					</Tonnage>
+				</WeightClass>
+			</Faction>
+			<Faction name="Clan" value="0.025">
+				<WeightClass name="Light" value="0.025">
+					<Tonnage name="30" value="0.03">
+						<Mech name="ArcticCheetah" value="0.015" />
+					</Tonnage>
+				</WeightClass>
+			</Faction>
+		</Effect>
+	</Node>
+</MechSkillTree>
+-->
+
+<!--
+Require types
+ - Hardpoint
+ - Equipment
+ - MechProperty
+
+Affects
+ - Weapon
+ - Equipment
+ - Consumable
+-->
+	
+<MechSkillTree>
+	<!-- Firepower - Universal Nodes -->
+	<Node names="Range1,Range2,Range3,Range4,Range5,Range6,Range7,Range8,Range9,Range10,Range11,Range12,Range13,Range14,Range15">
+		<Effect name="all_range_multiplier" value="0.0">
+			<Faction name="IS" value="0.01"/>
+			<Faction name="Clan" value="0.01"/>
+		</Effect>
+	</Node>
+	<Node names="Velocity1,Velocity2,Velocity3,Velocity4,Velocity5">
+		<Effect name="all_velocity_multiplier" value="0.0">
+			<Faction name="IS" value="0.02"/>
+			<Faction name="Clan" value="0.02"/>
+		</Effect>
+	</Node>
+	<Node names="Cooldown1,Cooldown2,Cooldown3,Cooldown4,Cooldown5,Cooldown6,Cooldown7,Cooldown8,Cooldown9,Cooldown10,Cooldown11,Cooldown12,Cooldown13,Cooldown14,Cooldown15,Cooldown16">
+		<Effect name="all_cooldown_multiplier" value="0.0">
+			<Faction name="IS" value="-0.0075"/>
+			<Faction name="Clan" value="-0.006"/>
+		</Effect>
+	</Node>
+	<Node names="HeatGen1,HeatGen2,HeatGen3,HeatGen4,HeatGen5,HeatGen6,HeatGen7,HeatGen8,HeatGen9,HeatGen10,HeatGen11,HeatGen12,HeatGen13,HeatGen14">
+		<Effect name="all_heat_multiplier" value="0.0">
+			<Faction name="IS" value="-0.0075"/>
+			<Faction name="Clan" value="-0.0075"/>
+		</Effect>
+	</Node>
+	<Node names="LaserDuration1,LaserDuration2,LaserDuration3,LaserDuration4">
+    <Affects weapon="Energy"/>
+    <Effect name="laser_duration_multiplier" value="0.0">
+			<Faction name="IS" value="-0.0375"/>
+			<Faction name="Clan" value="-0.0250"/>
+		</Effect>
+	</Node>
+	<Node names="HighExplosive1,HighExplosive2">
+    <Affects weapon="Missile"/>
+    <Effect name="missile_critdamage_multiplier" value="0.0">
+			<Faction name="IS" value="0.075"/>
+			<Faction name="Clan" value="0.075"/>
+		</Effect>
+	</Node>
+	<Node names="MissileSpread1,MissileSpread2">
+    <Affects weapon="Missile"/>
+    <Effect name="missile_spread_multiplier" value="0.0">
+			<Faction name="IS" value="-0.025"/>
+			<Faction name="Clan" value="-0.025"/>
+		</Effect>
+	</Node>
+	<Node names="LBXSpread1,LBXSpread2">
+    <Affects weapon="Ballistic"/>
+    <Effect name="lbxautocannon_spread_multiplier" value="0.0">
+			<Faction name="IS" value="-0.05"/>
+			<Faction name="Clan" value="-0.05"/>
+		</Effect>
+	</Node>
+	<Node names="GaussCharge1,GaussCharge2">
+    <Affects weapon="Ballistic"/>
+    <Effect name="gaussextendedcharge_additive" value="0.0">
+			<Faction name="IS" value="0.5"/>
+			<Faction name="Clan" value="0.5"/>
+		</Effect>
+	</Node>
+	<Node names="UACJamChance1,UACJamChance2">
+    <Affects weapon="Ballistic"/>
+    <Effect name="ultraautocannon_jamchance_multiplier" value="0.0">
+			<Faction name="IS" value="-0.025"/>
+			<Faction name="Clan" value="-0.025"/>
+		</Effect>
+	</Node>
+	<Node names="ReinforcedCasing1,ReinforcedCasing2,ReinforcedCasing3,ReinforcedCasing4,ReinforcedCasing5,ReinforcedCasing6,ReinforcedCasing7,ReinforcedCasing8">
+		<Effect name="critchance_receiving_multiplier" value="0.0">
+			<Faction name="IS" value="-0.01"/>
+			<Faction name="Clan" value="-0.01"/>
+		</Effect>
+	</Node>
+
+	<!-- Survival - Armor - ArmorHardening -->
+	<Node names="ArmorHardening1,ArmorHardening2,ArmorHardening3,ArmorHardening4,ArmorHardening5,ArmorHardening6,ArmorHardening7,ArmorHardening8,ArmorHardening9,ArmorHardening10">
+		<Effect name="increasedarmor_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.0">
+					<Tonnage name="20" value="0.026"/>
+					<Tonnage name="25" value="0.025"/>
+					<Tonnage name="30" value="0.024"/>
+					<Tonnage name="35" value="0.023"/>
+				</WeightClass>
+				<WeightClass name="Medium" value="0.0">
+					<Tonnage name="40" value="0.022"/>
+					<Tonnage name="45" value="0.021"/>
+					<Tonnage name="50" value="0.020"/>
+					<Tonnage name="55" value="0.019"/>
+				</WeightClass>
+				<WeightClass name="Heavy" value="0.0">
+					<Tonnage name="60" value="0.018"/>
+					<Tonnage name="65" value="0.017"/>
+					<Tonnage name="70" value="0.016"/>
+					<Tonnage name="75" value="0.015"/>
+				</WeightClass>
+				<WeightClass name="Assault" value="0.0">
+					<Tonnage name="80" value="0.014"/>
+					<Tonnage name="85" value="0.013"/>
+					<Tonnage name="90" value="0.012"/>
+					<Tonnage name="95" value="0.011"/>
+					<Tonnage name="100" value="0.010"/>
+				</WeightClass>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.0">
+					<Tonnage name="20" value="0.026"/>
+					<Tonnage name="25" value="0.025"/>
+					<Tonnage name="30" value="0.024"/>
+					<Tonnage name="35" value="0.023"/>
+				</WeightClass>
+				<WeightClass name="Medium" value="0.0">
+					<Tonnage name="40" value="0.022"/>
+					<Tonnage name="45" value="0.021"/>
+					<Tonnage name="50" value="0.020"/>
+					<Tonnage name="55" value="0.019"/>
+				</WeightClass>
+				<WeightClass name="Heavy" value="0.0">
+					<Tonnage name="60" value="0.018"/>
+					<Tonnage name="65" value="0.017"/>
+					<Tonnage name="70" value="0.016"/>
+					<Tonnage name="75" value="0.015"/>
+				</WeightClass>
+				<WeightClass name="Assault" value="0.0">
+					<Tonnage name="80" value="0.014"/>
+					<Tonnage name="85" value="0.013"/>
+					<Tonnage name="90" value="0.012"/>
+					<Tonnage name="95" value="0.011"/>
+					<Tonnage name="100" value="0.010"/>
+				</WeightClass>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- Survival - Structure - SkeletalDensity -->
+	<Node names="SkeletalDensity1,SkeletalDensity2,SkeletalDensity3,SkeletalDensity4,SkeletalDensity5,SkeletalDensity6,SkeletalDensity7,SkeletalDensity8,SkeletalDensity9,SkeletalDensity10">
+		<Effect name="increasedstructure_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.0">
+					<Tonnage name="20" value="0.041"/>
+					<Tonnage name="25" value="0.040"/>
+					<Tonnage name="30" value="0.039"/>
+					<Tonnage name="35" value="0.038"/>
+				</WeightClass>
+				<WeightClass name="Medium" value="0.0">
+					<Tonnage name="40" value="0.037"/>
+					<Tonnage name="45" value="0.036"/>
+					<Tonnage name="50" value="0.035"/>
+					<Tonnage name="55" value="0.034"/>
+				</WeightClass>
+				<WeightClass name="Heavy" value="0.0">
+					<Tonnage name="60" value="0.033"/>
+					<Tonnage name="65" value="0.032"/>
+					<Tonnage name="70" value="0.031"/>
+					<Tonnage name="75" value="0.030"/>
+				</WeightClass>
+				<WeightClass name="Assault" value="0.0">
+					<Tonnage name="80" value="0.029"/>
+					<Tonnage name="85" value="0.028"/>
+					<Tonnage name="90" value="0.027"/>
+					<Tonnage name="95" value="0.026"/>
+					<Tonnage name="100" value="0.025"/>
+				</WeightClass>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.0">
+					<Tonnage name="20" value="0.041"/>
+					<Tonnage name="25" value="0.040"/>
+					<Tonnage name="30" value="0.039"/>
+					<Tonnage name="35" value="0.038"/>
+				</WeightClass>
+				<WeightClass name="Medium" value="0.0">
+					<Tonnage name="40" value="0.037"/>
+					<Tonnage name="45" value="0.036"/>
+					<Tonnage name="50" value="0.035"/>
+					<Tonnage name="55" value="0.034"/>
+				</WeightClass>
+				<WeightClass name="Heavy" value="0.0">
+					<Tonnage name="60" value="0.033"/>
+					<Tonnage name="65" value="0.032"/>
+					<Tonnage name="70" value="0.031"/>
+					<Tonnage name="75" value="0.030"/>
+				</WeightClass>
+				<WeightClass name="Assault" value="0.0">
+					<Tonnage name="80" value="0.029"/>
+					<Tonnage name="85" value="0.028"/>
+					<Tonnage name="90" value="0.027"/>
+					<Tonnage name="95" value="0.026"/>
+					<Tonnage name="100" value="0.025"/>
+				</WeightClass>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- Survival - Fall Damage - Shock Absorbance -->
+	<Node names="ShockAbsorbance1,ShockAbsorbance2,ShockAbsorbance3,ShockAbsorbance4,ShockAbsorbance5">
+		<Effect name="falldamage_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="-0.1"/>
+				<WeightClass name="Medium" value="-0.1"/>
+				<WeightClass name="Heavy" value="-0.1"/>
+				<WeightClass name="Assault" value="-0.1"/>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="-0.1"/>
+				<WeightClass name="Medium" value="-0.1"/>
+				<WeightClass name="Heavy" value="-0.1"/>
+				<WeightClass name="Assault" value="-0.1"/>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- Survival - AMS - AMS Overload -->
+	<Node names="AMSOverload1,AMSOverload2">
+		<Affects weapon="AntiMissileSystem"/>
+		<Effect name="antimissilesystem_damage_additive" value="1.25"/>
+	</Node>
+	<!-- Survival - NARC - EnhancedNARC -->
+	<Node names="EnhancedNARC1,EnhancedNARC2">
+		<Require hardpoint="Missile"/>
+		<Affects weapon="NarcBeacon"/>
+		<Effect name="narcbeacon_velocity_multiplier" value="0.10"/>
+		<Effect name="narcbeacon_narcduration_multiplier" value="0.15"/>
+	</Node>
+	<!-- Mobility - Upper Chassis - Twist Speed -->
+	<Node names="TorsoSpeed1,TorsoSpeed2,TorsoSpeed3,TorsoSpeed4,TorsoSpeed5,TorsoSpeed6">
+		<Effect name="torso_yawspeed_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.05"/>
+				<WeightClass name="Medium" value="0.04"/>
+				<WeightClass name="Heavy" value="0.035"/>
+				<WeightClass name="Assault" value="0.035"/>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.05"/>
+				<WeightClass name="Medium" value="0.04"/>
+				<WeightClass name="Heavy" value="0.035"/>
+				<WeightClass name="Assault" value="0.035"/>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- Mobility - Upper Chassis - Twist Angle -->
+	<Node names="TorsoYaw1,TorsoYaw2,TorsoYaw3,TorsoYaw4,TorsoYaw5">
+		<Affects mechProperty="No360TorsoTwist"/>
+		<Effect name="torso_yawangle_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.02"/>
+				<WeightClass name="Medium" value="0.02"/>
+				<WeightClass name="Heavy" value="0.02"/>
+				<WeightClass name="Assault" value="0.02"/>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.02"/>
+				<WeightClass name="Medium" value="0.02"/>
+				<WeightClass name="Heavy" value="0.02"/>
+				<WeightClass name="Assault" value="0.02"/>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- Mobility - Upper Chassis - Pitch Angle -->
+	<Node names="TorsoPitch1,TorsoPitch2,TorsoPitch3,TorsoPitch4,TorsoPitch5">
+		<Effect name="torso_pitchangle_multiplier" value="0.02"/>
+	</Node>
+	<!-- Mobility - Upper Chassis - Arm Angle -->
+	<!--<Node names="ArmPitch1,ArmPitch2,ArmPitch3,ArmPitch4,ArmPitch5">
+		<Effect name="arm_pitchangle_multiplier" value="0.06"/>
+	</Node>-->
+	<!-- Mobility - Lower Chassis - Kinetic Burst -->
+	<Node names="KineticBurst1,KineticBurst2,KineticBurst3,KineticBurst4,KineticBurst5,KineticBurst6,KineticBurst7">
+		<Effect name="accellerp_all_multiplier" value="0.035"/>
+	</Node>
+	<!-- Mobility - Lower Chassis - Hard Brake -->
+	<Node names="HardBrake1,HardBrake2,HardBrake3,HardBrake4,HardBrake5,HardBrake6,HardBrake7">
+		<Effect name="decellerp_all_multiplier" value="0.035"/>
+	</Node>
+	<!-- Mobility - LowerChassis - AnchorTurn -->
+	<Node names="AnchorTurn1,AnchorTurn2,AnchorTurn3,AnchorTurn4,AnchorTurn5">
+		<Effect name="turnlerp_all_multiplier" value="0.05"/>
+	</Node>
+	<!-- Mobility - Lower Chassis - Speed Tweak -->
+	<Node names="SpeedTweak1,SpeedTweak2,SpeedTweak3,SpeedTweak4,SpeedTweak5">
+		<Effect name="mechtopspeed_multiplier" value="0.015"/>
+	</Node>
+	<!-- Mobility - Jump Jets - Lift Speed -->
+	<Node names="LiftSpeed1,LiftSpeed2,LiftSpeed3,LiftSpeed4,LiftSpeed5">
+		<Require equipment="JumpJets"/>
+		<Affects equipment="JumpJets"/>
+		<Effect name="jumpjets_initialthrust_multiplier" value="0.03"/>
+	</Node>
+	<!-- Mobility - Jump Jets - Vectoring -->
+	<Node names="Vectoring1,Vectoring2,Vectoring3,Vectoring4,Vectoring5">
+		<Require equipment="JumpJets"/>
+		<Affects equipment="JumpJets"/>
+		<Effect name="jumpjets_forwardthrust_multiplier" value="0.25"/>
+	</Node>
+	<!-- Mobility - Jump Jets - Vent Calibration -->
+	<Node names="VentCalibration1,VentCalibration2,VentCalibration3,VentCalibration4,VentCalibration5">
+		<Require equipment="JumpJets"/>
+		<Affects equipment="JumpJets"/>
+		<Effect name="jumpjets_burntime_multiplier" value="0.03"/>
+	</Node>
+	<!-- Mobility - Jump Jets - HeatShielding -->
+	<Node names="HeatShielding1,HeatShielding2,HeatShielding3,HeatShielding4,HeatShielding5">
+		<Require equipment="JumpJets"/>
+		<Affects equipment="JumpJets"/>
+		<Effect name="jumpjets_heat_multiplier" value="-0.06"/>
+	</Node>
+	<!-- Operations - Mech Operations - Quick Ignition -->
+	<Node names="QuickIgnition1,QuickIgnition2,QuickIgnition3,QuickIgnition4,QuickIgnition5">
+		<Effect name="startupduration_multiplier" value="-0.07"/>
+	</Node>
+	<!-- Operations - Mech Operations - Heat Containment -->
+	<Node names="HeatContainment1,HeatContainment2,HeatContainment3,HeatContainment4,HeatContainment5">
+		<Effect name="maxheat_multiplier" value="0.03"/>
+	</Node>
+	<!-- Operations - Mech Operations - Cool Run -->
+	<Node names="CoolRun1,CoolRun2,CoolRun3,CoolRun4,CoolRun5">
+		<Effect name="heatdissipation_multiplier" value="0.02"/>
+	</Node>
+	<!-- Operations - Mech Operations - Hill Climb -->
+	<Node names="HillClimb1,HillClimb2,HillClimb3">
+		<Effect name="hillclimb_multiplier" value="0.05"/>
+	</Node>
+	<!-- Operations - Mech Operations - Improved Gyros -->
+	<Node names="ImprovedGyros1,ImprovedGyros2,ImprovedGyros3,ImprovedGyros4">
+		<Effect name="screenshake_multiplier" value="-0.175"/>
+	</Node>
+	<!-- Operations - Mech Operations - Speed Retention -->
+	<Node names="SpeedRetention1,SpeedRetention2,SpeedRetention3">
+		<Effect name="speedretention_multiplier" value="0.1"/>
+	</Node>
+	<!-- Operations - Mech Operations - Magazine Capacity -->
+	<Node names="MagazineCapacity1,MagazineCapacity2">
+    <Affects weapon="Ballistic"/>
+    <Effect name="ammocapacity_machinegun_additive" value="0.0">
+			<Faction name="IS" value="200.0"/>
+		</Effect>
+		<Effect name="ammocapacity_ac2_additive" value="0.0">
+			<Faction name="IS" value="8.0"/>
+		</Effect>
+		<Effect name="ammocapacity_ac5_additive" value="0.0">
+			<Faction name="IS" value="3.0"/>
+		</Effect>
+		<Effect name="ammocapacity_ac10_additive" value="0.0">
+			<Faction name="IS" value="2.0"/>
+		</Effect>
+		<Effect name="ammocapacity_ac20_additive" value="0.0">
+			<Faction name="IS" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_lb10x_additive" value="0.0">
+			<Faction name="IS" value="2.0"/>
+		</Effect>
+		<Effect name="ammocapacity_gauss_additive" value="0.0">
+			<Faction name="IS" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_ultraac5_additive" value="0.0">
+			<Faction name="IS" value="3.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cmachinegun_additive" value="0.0">
+			<Faction name="Clan" value="200.0"/>
+		</Effect>
+		<Effect name="ammocapacity_clb2x_additive" value="0.0">
+			<Faction name="Clan" value="8.0"/>
+		</Effect>
+		<Effect name="ammocapacity_clb5x_additive" value="0.0">
+			<Faction name="Clan" value="3.0"/>
+		</Effect>
+		<Effect name="ammocapacity_clb10x_additive" value="0.0">
+			<Faction name="Clan" value="2.0"/>
+		</Effect>
+		<Effect name="ammocapacity_clb20x_additive" value="0.0">
+			<Faction name="Clan" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cultraac2_additive" value="0.0">
+			<Faction name="Clan" value="8.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cultraac5_additive" value="0.0">
+			<Faction name="Clan" value="6.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cultraac10_additive" value="0.0">
+			<Faction name="Clan" value="6.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cultraac20_additive" value="0.0">
+			<Faction name="Clan" value="4.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cgauss_additive" value="0.0">
+			<Faction name="Clan" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cac2_additive" value="0.0">
+			<Faction name="Clan" value="8.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cac5_additive" value="0.0">
+			<Faction name="Clan" value="6.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cac10_additive" value="0.0">
+			<Faction name="Clan" value="6.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cac20_additive" value="0.0">
+			<Faction name="Clan" value="4.0"/>
+		</Effect>
+	</Node>
+	<!-- Missile Rack (Capacity) -->
+	<Node names="MissileRack1,MissileRack2">
+    <Affects weapon="Missile"/>
+    <Effect name="ammocapacity_lrm_additive" value="0.0">
+			<Faction name="IS" value="18.0"/>
+		</Effect>
+		<Effect name="ammocapacity_srm_additive" value="0.0">
+			<Faction name="IS" value="10.0"/>
+		</Effect>
+		<Effect name="ammocapacity_streak_srm_additive" value="0.0">
+			<Faction name="IS" value="10.0"/>
+		</Effect>
+		<Effect name="ammocapacity_narc_additive" value="0.0">
+			<Faction name="IS" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_lrm_artemis_additive" value="0.0">
+			<Faction name="IS" value="18.0"/>
+		</Effect>
+		<Effect name="ammocapacity_srm_artemis_additive" value="0.0">
+			<Faction name="IS" value="10.0"/>
+		</Effect>
+		<!-- Clan Missile Systems -->
+		<Effect name="ammocapacity_clrm_additive" value="0.0">
+			<Faction name="Clan" value="18.0"/>
+		</Effect>
+		<Effect name="ammocapacity_csrm_additive" value="0.0">
+			<Faction name="Clan" value="10.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cstreak_srm_additive" value="0.0">
+			<Faction name="Clan" value="10.0"/>
+		</Effect>
+		<Effect name="ammocapacity_cnarc_additive" value="0.0">
+			<Faction name="Clan" value="1.0"/>
+		</Effect>
+		<Effect name="ammocapacity_clrm_artemis_additive" value="0.0">
+			<Faction name="Clan" value="18.0"/>
+		</Effect>
+		<Effect name="ammocapacity_csrm_artemis_additive" value="0.0">
+			<Faction name="Clan" value="10.0"/>
+		</Effect>
+	</Node>
+	<!-- InfoTech - Sensors - Sensor Range -->
+	<Node names="SensorRange1,SensorRange2,SensorRange3,SensorRange4,SensorRange5">
+		<Effect name="sensorrange_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.07"/>
+				<WeightClass name="Medium" value="0.07"/>
+				<WeightClass name="Heavy" value="0.07"/>
+				<WeightClass name="Assault" value="0.07"/>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.07"/>
+				<WeightClass name="Medium" value="0.07"/>
+				<WeightClass name="Heavy" value="0.07"/>
+				<WeightClass name="Assault" value="0.07"/>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- InfoTech - Sensors - Target Info Gathering -->
+	<Node names="TargetInfoGathering1,TargetInfoGathering2,TargetInfoGathering3,TargetInfoGathering4,TargetInfoGathering5">
+		<Effect name="targetinfogathering_multiplier" value="0.0">
+			<Faction name="IS" value="0.0">
+				<WeightClass name="Light" value="0.07"/>
+				<WeightClass name="Medium" value="0.07"/>
+				<WeightClass name="Heavy" value="0.07"/>
+				<WeightClass name="Assault" value="0.07"/>
+			</Faction>
+			<Faction name="Clan" value="0.0">
+				<WeightClass name="Light" value="0.07"/>
+				<WeightClass name="Medium" value="0.07"/>
+				<WeightClass name="Heavy" value="0.07"/>
+				<WeightClass name="Assault" value="0.07"/>
+			</Faction>
+		</Effect>
+	</Node>
+	<!-- InfoTech - Sensors - Target Decay -->
+	<Node names="TargetDecay1,TargetDecay2,TargetDecay3,TargetDecay4,TargetDecay5">
+		<Effect name="targetdecayduration_additive" value="0.7"/>
+	</Node>
+	<!-- InfoTech - Sensors - Radar Deprivation -->
+	<Node names="RadarDeprivation1,RadarDeprivation2,RadarDeprivation3,RadarDeprivation4,RadarDeprivation5">
+		<Effect name="radardeprivation_multiplier" value="0.2"/>
+	</Node>
+	<!-- InfoTech - Sensors - Advanced Zoom -->
+	<Node names="AdvancedZoom">
+		<Effect name="advancedzoom_additive" value="1.0"/>
+	</Node>
+	<!-- InfoTech - Sensors - Advanced Seismic Sensor -->
+	<Node names="SeismicSensor1,SeismicSensor2">
+		<Effect name="seismicsensorrange_additive" value="100.0"/>
+	</Node>
+	<!-- InfoTech - Sensors - 360 Target Retention -->
+	<Node names="TargetRetention1,TargetRetention2">
+		<Effect name="backfacetargetretentionrange_additive" value="200.0"/>
+	</Node>
+	<!-- InfoTech - Auxiliary -->
+	<Node names="ConsumableSlot1,ConsumableSlot2,ConsumableSlot3,ConsumableSlot4">
+		<Effect name="extraconsumableslot_additive" value="1.0"/>
+	</Node>
+	<Node names="ExtraUAV">
+		<Effect name="uavcapacity_additive" value="1.0"/>
+	</Node>
+	<Node names="UAVRange1,UAVRange2">
+		<Affects consumable="UAV"/>
+		<Effect name="uavrange_multiplier" value="0.20"/>
+	</Node>
+	<Node names="UAVTime">
+		<Affects consumable="UAV"/>
+		<Effect name="uavduration_additive" value="10.0"/>
+	</Node>
+	<Node names="CoolantReserves">
+		<Effect name="coolshotcapacity_additive" value="1.0"/>
+	</Node>
+	<Node names="EnhancedCoolshot1,EnhancedCoolshot2">
+		<Affects consumable="CoolantFlush"/>
+		<Effect name="coolshotcooling_multiplier" value="0.25"/>
+	</Node>
+	<Node names="CoolshotCooldown">
+		<Affects consumable="CoolantFlush"/>
+		<Effect name="coolshotcooldown_multiplier" value="-0.25"/>
+	</Node>
+	<Node names="ExpandedReserves">
+		<Effect name="strategicstrikecapacity_additive" value="1.0"/>
+	</Node>
+	<Node names="ExtendedBombardment1,ExtendedBombardment2">
+		<Affects consumable="StrategicStrike"/>
+		<Effect name="strategicstrikenumshells_multiplier" value="0.25"/>
+		<Effect name="strategicstrikeduration_multiplier" value="0.25"/>
+	</Node>
+	<Node names="EnhancedSpotting">
+		<Affects consumable="StrategicStrike"/>
+		<Effect name="strategicstrikespread_multiplier" value="-0.2"/>
+	</Node>
+	<Node names="CaptureAssist1,CaptureAssist2,CaptureAssist3,CaptureAssist4">
+		<Effect name="captureaccelerator_multiplier" value="0.05"/>
+	</Node>
+	<Node names="EnhancedECM1,EnhancedECM2">
+		<Require hardpoint="ECM"/>
+		<Affects equipment="ECM"/>
+		<Effect name="ecmtargetrangereduction_multiplier" value="0.225"/>
+	</Node>
+</MechSkillTree>

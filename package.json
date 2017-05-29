@@ -1,0 +1,21 @@
+{
+  "name": "mwo-skill-tree-planner",
+  "version": "0.0.1",
+  "description": "Skill tree planner for PGI's MechWarrior Online.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "ext-links": "node util/generateLinks.js",
+    "ext-categories": "node util/generateCategories.js",
+    "ext-tree": "python util/skill_node_extractor.py",
+    "ext-offset": "node util/offsetTree.js",
+    "ext-all": "npm run ext-links && npm run ext-categories && npm run ext-tree && npm run ext-offset"
+  },
+  "author": "Mark Ting",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.3",
+    "jsonfile": "^3.0.0"
+  }
+}

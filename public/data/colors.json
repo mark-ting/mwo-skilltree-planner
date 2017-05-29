@@ -1,0 +1,53 @@
+{
+  "cell": {
+    "inactive": {
+      "stroke": "rgb(84, 84, 84)",
+      "fill": "rgb(28, 28, 28)",
+      "width": 2
+    },
+    "active": {
+      "stroke": "rgb(0, 192, 255)",
+      "fill": "rgb(32, 32, 128)",
+      "width": 6
+    },
+    "possible": {
+      "stroke": "rgb(52, 120, 165)",
+      "fill": "rgb(20, 32, 32)",
+      "width": 4
+    },
+    "orphaned": {
+      "stroke": "rgb(255, 0 ,0)",
+      "fill": "rgb(128, 0, 0)",
+      "width": 6
+    }
+  },
+  "label": {
+    "inactive": {
+      "fill": "rgb(128, 128, 128)"
+    },
+    "active": {
+      "fill": "rgb(255, 255, 255)"
+    },
+    "possible": {
+      "fill": "rgb(52, 120, 165)"
+    },
+    "orphaned": {
+      "fill": "white",
+      "font": ""
+    }
+  },
+  "link": {
+    "inactive": {
+      "stroke": "rgb(128, 128, 128)",
+      "width": 4
+    },
+    "active": {
+      "stroke": "rgb(255, 255, 255)",
+      "width": 4
+    },
+    "possible": {
+      "stroke": "rgb(52, 120, 165)",
+      "width": 4
+    }
+  }
+}
