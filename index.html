@@ -10,35 +10,44 @@
 
 <body>
   <div class="sidebar">
-    <form>
-      <div class="category-switch">
-        <input type="radio" id="toggle-firepower" name="category_switch" value="Firepower" checked/>
-        <label for="toggle-firepower">Firepower</label>
+    <div class="category-switch">
+      <form>
+          <input type="radio" id="toggle-firepower" name="category_switch" value="Firepower" checked/>
+          <label for="toggle-firepower">Firepower</label>
 
-        <input type="radio" id="toggle-survival" name="category_switch" value="Survival" />
-        <label for="toggle-survival">Survival</label>
+          <input type="radio" id="toggle-survival" name="category_switch" value="Survival" />
+          <label for="toggle-survival">Survival</label>
 
-        <input type="radio" id="toggle-mobility" name="category_switch" value="Mobility" />
-        <label for="toggle-mobility">Mobility</label>
+          <input type="radio" id="toggle-mobility" name="category_switch" value="Mobility" />
+          <label for="toggle-mobility">Mobility</label>
 
-        <input type="radio" id="toggle-jumpjets" name="category_switch" value="Firepower"/>
-        <label for="toggle-jumpjets">Jump Jets</label>
+          <input type="radio" id="toggle-jumpjets" name="category_switch" value="Firepower"/>
+          <label for="toggle-jumpjets">Jump Jets</label>
 
-        <input type="radio" id="toggle-operations" name="category_switch" value="Survival" />
-        <label for="toggle-operations">Operations</label>
+          <input type="radio" id="toggle-operations" name="category_switch" value="Survival" />
+          <label for="toggle-operations">Operations</label>
 
-        <input type="radio" id="toggle-sensors" name="category_switch" value="Sensors" />
-        <label for="toggle-sensors">Sensors</label>
+          <input type="radio" id="toggle-sensors" name="category_switch" value="Sensors" />
+          <label for="toggle-sensors">Sensors</label>
 
-        <input type="radio" id="toggle-auxiliary" name="category_switch" value="Mobility" />
-        <label for="toggle-auxiliary">Auxiliary</label>
-      </div>
-    </form>
+          <input type="radio" id="toggle-auxiliary" name="category_switch" value="Mobility" />
+          <label for="toggle-auxiliary">Auxiliary</label>
+      </form>
+    </div>
 
-    <button class="sidebar-btn btn-danger" id="clear-section">Clear Section</button>
-    <button class="sidebar-btn btn-danger" id="clear-all">Clear All Sections</button>
-    <label for="active-nodes">Active Nodes</label>
-    <input type="number" class="stat-display" id="active-nodes" value="0" readonly />
+    <div class="section-controls">
+      <button class="sidebar-btn btn-confirm" id="add-section">Add Section</button>
+      <button class="sidebar-btn btn-danger" id="clear-section">Clear Section</button>
+      <button class="sidebar-btn btn-danger" id="clear-all">Clear All Sections</button>
+    </div>
+
+    <div class="sidebar-stats">
+      <label for="active-nodes">Active Nodes</label>
+      <input type="text" class="stat-display" id="active-nodes" readonly />
+
+      <label for="category-nodes">Category Nodes</label>
+      <input type="text" class="stat-display" id="category-nodes" readonly />
+    </div>
   </div>
   <div class="planner">
     <canvas class="grid" id="hex" width="1400" height="900"></canvas>

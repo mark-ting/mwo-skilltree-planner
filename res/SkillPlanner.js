@@ -133,6 +133,11 @@ class SkillPlanner {
       this.draw()
     })
 
+    bindEvent('add-section', 'click', () => {
+      this.active = _su.union(this.active, this.tree[this.category].nodes)
+      this.draw()
+    })
+
     bindEvent('clear-section', 'click', () => {
       this.active = _su.difference(this.active, this.tree[this.category].nodes)
       this.draw()
@@ -318,8 +323,10 @@ class SkillPlanner {
       }
     }
 
+    // TODO: make interface updates a separate step
     let updateInterface = () => {
-      document.getElementById('active-nodes').value = this.active.size
+      document.getElementById('active-nodes').value = `${this.active.size} / 91`
+      document.getElementById('category-nodes').value = `${this.visibleActive.size} / ${this.tree[this.category].nodes.size}`
     }
 
     updateNodeState()

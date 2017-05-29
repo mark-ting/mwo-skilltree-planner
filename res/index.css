@@ -18,13 +18,30 @@ body {
   width: 200px;
 }
 
+.sidebar div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
 .sidebar-btn {
+  font-weight: bolder;
   padding: 9px;
+}
+
+.btn-confirm {
+  color: white;
+  background-color: rgba(0, 128, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-confirm:hover {
+  background-color: rgba(0, 48, 96, 0.8);
 }
 
 .btn-danger {
   color: white;
-  font-weight: bolder;
   background-color: rgba(192, 0, 0, 1);
   border: 1px solid rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease-in-out;
@@ -32,10 +49,6 @@ body {
 
 .btn-danger:hover {
   background-color: rgba(64, 0, 0, 0.8);
-}
-
-.btn-danger:click {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Hide radio button */
