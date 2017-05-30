@@ -94,3 +94,11 @@ canvas {
   left: 0;
   right: 0;
 }
+
+canvas#hex {
+  z-index: 2;
+}
+
+canvas#link {
+  z-index: 1;
+}

@@ -39,9 +39,17 @@ class SkillPlanner {
   }
 
   initGrid () {
-    let hexGrid = new HexGrid(48, 16, new Point(-96, 128))
+    let radius = 48
+    let padding = 16
+    let origin = new Point(-96, 128)
+
+    let hexGrid = new HexGrid(radius, padding, origin)
     hexGrid.bindCanvas(document.getElementById('hex'))
     this.hexGrid = hexGrid
+
+    let linkGrid = new HexGrid(radius, padding, origin)
+    linkGrid.bindCanvas(document.getElementById('link'))
+    this.linkGrid = linkGrid
 
     this.initEvents()
     this.initInterface()
@@ -339,28 +347,22 @@ class SkillPlanner {
   draw () {
     this.update()
     this.hexGrid.clear()
+    this.linkGrid.clear()
     let categoryNodes = this.tree[this.category].nodes
-
-    // Draw node links of current category
-    for (let id of categoryNodes) {
-      if (id) {
-        let src = this.skills[id]
-        let links = this.links[id]
-
-        for (let i = 0, len = links.length; i < len; i++) {
-          let dest = this.skills[links[i]]
-          if (dest) {
-            this.hexGrid.drawHexLink(src.col, src.row, dest.col, dest.row, this.colors['link']['inactive'])
-          }
-        }
-      }
-    }
 
     // Draw nodes of current category
     for (let id of categoryNodes) {
       if (id) {
         let node = this.skills[id]
         planner.drawNode(node, 'inactive')
+
+        let links = this.links[id]
+        for (let i = 0, len = links.length; i < len; i++) {
+          let dest = this.skills[links[i]]
+          if (dest) {
+            this.linkGrid.drawHexLink(node.col, node.row, dest.col, dest.row, this.colors['link']['inactive'])
+          }
+        }
 
         // BEGIN DEBUG
         if (this.DEBUG) {
@@ -370,11 +372,19 @@ class SkillPlanner {
       }
     }
 
-    // Draw visible active nodes, painting over
+    // Draw visible active nodes and links
     for (let id of this.visibleActive) {
       if (id) {
         let node = this.skills[id]
         planner.drawNode(node, 'active')
+
+        let links = this.links[id]
+        for (let i = 0, len = links.length; i < len; i++) {
+          let dest = this.skills[links[i]]
+          if (dest) {
+            this.linkGrid.drawHexLink(node.col, node.row, dest.col, dest.row, this.colors['link']['active'])
+          }
+        }
 
         // BEGIN DEBUG
         if (this.DEBUG) {
@@ -384,11 +394,19 @@ class SkillPlanner {
       }
     }
 
-    // Draw visible possible nodes, painting over
+    // Draw visible possible nodes and links
     for (let id of this.visiblePossible) {
       if (id) {
         let node = this.skills[id]
         planner.drawNode(node, 'possible')
+
+        let links = this.links[id]
+        for (let i = 0, len = links.length; i < len; i++) {
+          let dest = this.skills[links[i]]
+          if (dest) {
+            this.linkGrid.drawHexLink(node.col, node.row, dest.col, dest.row, this.colors['link']['possible'])
+          }
+        }
 
         // BEGIN DEBUG
         if (this.DEBUG) {
@@ -398,16 +416,24 @@ class SkillPlanner {
       }
     }
 
-    // Draw orphaned nodes, painting over
+    // Draw visible orphan nodes and links
     for (let id of this.visibleOrphan) {
       if (id) {
         let node = this.skills[id]
-        planner.drawNode(node, 'orphaned')
+        planner.drawNode(node, 'orphan')
+
+        let links = this.links[id]
+        for (let i = 0, len = links.length; i < len; i++) {
+          let dest = this.skills[links[i]]
+          if (dest) {
+            this.linkGrid.drawHexLink(node.col, node.row, dest.col, dest.row, this.colors['link']['orphan'])
+          }
+        }
 
         // BEGIN DEBUG
         if (this.DEBUG) {
-          this.hexGrid.drawHexCell(node.col, node.row, this.colors['cell']['orphaned'])
-          this.hexGrid.drawHexLabel(node.col, node.row, id, undefined, this.colors['cell']['orphaned'])
+          this.hexGrid.drawHexCell(node.col, node.row, this.colors['cell']['orphan'])
+          this.hexGrid.drawHexLabel(node.col, node.row, id, undefined, this.colors['cell']['orphan'])
         }  // END DEBUG
       }
     }

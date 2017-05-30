@@ -15,7 +15,7 @@
       "fill": "rgb(20, 32, 32)",
       "width": 4
     },
-    "orphaned": {
+    "orphan": {
       "stroke": "rgb(255, 0 ,0)",
       "fill": "rgb(128, 0, 0)",
       "width": 6
@@ -31,9 +31,8 @@
     "possible": {
       "fill": "rgb(52, 120, 165)"
     },
-    "orphaned": {
-      "fill": "white",
-      "font": ""
+    "orphan": {
+      "fill": "white"
     }
   },
   "link": {
@@ -42,11 +41,15 @@
       "width": 4
     },
     "active": {
-      "stroke": "rgb(255, 255, 255)",
+      "stroke": "rgb(0, 192, 255)",
       "width": 4
     },
     "possible": {
       "stroke": "rgb(52, 120, 165)",
+      "width": 4
+    },
+    "orphan": {
+      "stroke": "rgb(255, 0 ,0)",
       "width": 4
     }
   }
