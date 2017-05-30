@@ -474,6 +474,15 @@ class SkillPlanner {
       this.active = new Set(JSON.parse(session))
     }
   }
+
+  exportSession () {
+    return [...this.active].map((id) => parseInt(id, 10)).join('-')
+  }
+
+  importSession (sessionString) {
+    this.active = new Set(sessionString.split('-'))
+    this.draw()
+  }
 }
 
 const planner = new SkillPlanner()
