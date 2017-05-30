@@ -156,6 +156,15 @@ class SkillPlanner {
       this.active = new Set()
       this.draw()
     })
+
+    bindEvent('export', 'click', () => {
+      window.prompt('Please copy this Session String:', this.exportSession())
+    })
+
+    bindEvent('import', 'click', () => {
+      let sessionString = window.prompt('Please enter the Session String to import:')
+      this.importSession(sessionString)
+    })
   }
 
   loadData (cb) {
@@ -480,7 +489,7 @@ class SkillPlanner {
   }
 
   importSession (sessionString) {
-    this.active = new Set(sessionString.split('-'))
+    this.active = new Set(sessionString.split('-')) || new Set()
     this.draw()
   }
 }
