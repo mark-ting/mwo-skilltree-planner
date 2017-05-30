@@ -214,6 +214,48 @@ def map_node_localizations():
     return localizations
 
 
+def map_effect_localizations():
+    localizations = {}
+
+    ns = {'ns': 'urn:schemas-microsoft-com:office:spreadsheet'}
+    quirk_prefix = 'qrk_'
+    quirk_prefix2 = 'QRK_'  # because some effects are speshul
+    mult_suffix = '_mult'
+    add_suffix = '_add'
+
+    mult_append = 'iplier'
+    add_append = 'itive'
+
+    """
+    Example:
+    Effect string: all_range_multiplier
+    Locale string: qrk_all_range_mult
+    QRK_ISANTIMISSILESYSTEM_ROF_MULT is the only capped key
+    """
+
+    effect_string = '//*[starts-with(text(),"{0}")]'
+    effect_nodes = LOCALE_ROOT.xpath(effect_string.format(quirk_prefix), namespaces=ns)
+    effect_nodes += LOCALE_ROOT.xpath(effect_string.format(quirk_prefix2), namespaces=ns)
+
+    for effect_name_node in effect_nodes:
+        name_row = effect_name_node.getparent().getparent()
+        name = effect_name_node.text[len(quirk_prefix):].lower()
+
+        if name.endswith(mult_suffix):
+            name += mult_append
+
+        if name.endswith(add_suffix):
+            name += add_append
+
+        # Translated text resides on child of second child of Row
+        local_name = name_row.getchildren()[1][0].text
+
+        localizations[name] = {}
+        localizations[name] = local_name
+
+    return localizations
+
+
 def export_skill_tree_components():
     """
     Export XML data to JSON
@@ -235,6 +277,10 @@ def export_skill_tree_components():
 
     with open('out/ExtractedNodeLocalizations.json', 'w') as localizations_json:
         localizations_json.write(json.dumps(map_node_localizations(), indent=2))
+
+    with open('out/locale.json', 'w') as effectlocal_json:
+        effectlocal_json.write(json.dumps(map_effect_localizations(), indent=2))
+
 
 def export_skill_tree():
     effects = map_node_effects()
@@ -301,6 +347,7 @@ def export_skill_tree():
 
     with open('out/SkillTree.json', 'w') as skilltree_json:
         skilltree_json.write(json.dumps(tree, indent=2))
+
 
 if __name__ == "__main__":
     print('Exporting Component Skill Tree Data...')

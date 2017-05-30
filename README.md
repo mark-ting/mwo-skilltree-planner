@@ -50,6 +50,6 @@ Data Extraction
 * Run `npm install`
 * Run `node ./util/generateLinks.js` to generate `NodeLinks.json`
 * Run `node ./util/generateCategories.js` to generate `NodeCategories.json`
-* Run `python ./util/skill_node_extractor.py` to generate `SkillTree.json`
-* Run `node ./util/offsetTree.js` to generate `SkillTreeFinal.json`
-* `SkillTreeFinal.json` is ready to use with the Planner (see `latest.json` in `public/data/`)
+* Run `python ./util/skill_node_extractor.py` to generate component `Extracted_.json` files, `SkillTree.json`, and `locale.json`
+* Run `node ./util/offsetTree.js` to generate `latest.json`
+* `latest.json` and `locale.json` are now ready to use with the Planner (move to `public/data/`)

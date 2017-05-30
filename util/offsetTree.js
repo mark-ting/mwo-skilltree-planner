@@ -119,6 +119,6 @@ for (let category in tree) {
   }
 }
 
-jsonfile.writeFile('./out/SkillTreeFinal.json', tree2, () => {
+jsonfile.writeFile('./out/latest.json', tree2, () => {
   console.log('Tree offsets applied!')
 })

@@ -9,6 +9,7 @@ class SkillPlanner {
     this.coords = {}
     this.links = {}
     this.tree = {}
+    this.locale = {}
     this.colors = {}
 
     this.reset()
@@ -206,7 +207,15 @@ class SkillPlanner {
         console.error(err)
       })
 
-    Promise.all([loadColors, loadSkills])
+    let loadLocale = this.getJSON('./data/locale.json')
+      .then((locale) => {
+        this.locale = locale
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+
+    Promise.all([loadColors, loadSkills, loadLocale])
       .then(() => {
         typeof cb === 'function' && cb()
       })
@@ -335,6 +344,14 @@ class SkillPlanner {
     let updateInterface = () => {
       document.getElementById('active-nodes').value = `${this.active.size} / 91`
       document.getElementById('category-nodes').value = `${this.visibleActive.size} / ${this.tree[this.category].nodes.size}`
+
+      let effectText = ''
+      for (let effect in this.effects) {
+        // TODO: load proper values later!
+        let effectValue = 1
+        effectText += `${this.locale[effect]}: ${this.effects[effect] * effectValue}\n`
+      }
+      document.getElementById('effects-display').value = effectText
     }
 
     updateNodeState()

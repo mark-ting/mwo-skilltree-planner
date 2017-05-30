@@ -12,3 +12,5 @@ util/out/NodeCategories.json
 util/out/NodeLinks.json
 util/out/SkillTree.json
 util/out/SkillTreeFinal.json
+util/out/locale.json
+util/out/latest.json
