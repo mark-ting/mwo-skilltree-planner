@@ -89,9 +89,21 @@ class SkillPlanner {
       if (hex) {
         let hexId = this.skillHexToId(hex)
 
-        if (hexId !== this.prevHexId) {
-          this.toggleNode(hexId)
-          this.prevHexId = hexId
+        if (e.ctrlKey) {
+          let activate = !this.active.has(hexId)
+          let nodeGroup = this.groups[this.skills[hexId].group]
+          for (let node of nodeGroup) {
+            if (activate) {
+              this.activateNode(node)
+            } else {
+              this.deactivateNode(node)
+            }
+          }
+        } else {
+          if (hexId !== this.prevHexId) {
+            this.toggleNode(hexId)
+            this.prevHexId = hexId
+          }
         }
       }
       this.prevHexId = null
@@ -273,9 +285,8 @@ class SkillPlanner {
     return this.coords[this.category][`(${col}, ${row})`]
   }
 
-  // Toggle node state by ID
   toggleNode (nodeId) {
-    // Ignore invalid nodes
+    // Ignore invalid/non-visible nodes
     if (!nodeId || !this.tree[this.category].nodes.has(nodeId)) { return }
 
     if (this.active.has(nodeId)) {
@@ -283,6 +294,20 @@ class SkillPlanner {
     } else {
       this.active.add(nodeId)
     }
+    this.draw()
+  }
+
+  activateNode (nodeId) {
+    // Ignore invalid/non-visible nodes
+    if (!nodeId || !this.tree[this.category].nodes.has(nodeId)) { return }
+    this.active.add(nodeId)
+    this.draw()
+  }
+
+  deactivateNode (nodeId) {
+    // Ignore invalid/non-visible nodes
+    if (!nodeId || !this.tree[this.category].nodes.has(nodeId)) { return }
+    this.active.delete(nodeId)
     this.draw()
   }
 
