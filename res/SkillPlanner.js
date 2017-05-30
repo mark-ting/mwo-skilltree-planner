@@ -520,11 +520,11 @@ class SkillPlanner {
   }
 
   exportSession () {
-    return [...this.active].map((id) => parseInt(id, 10)).join('-')
+    return [...this.active].map((id) => parseInt(id, 10).toString(16)).join('-')
   }
 
   importSession (sessionString) {
-    this.active = new Set(sessionString.split('-')) || new Set()
+    this.active = new Set(sessionString.split('-').map((id) => parseInt(id, 16).toString())) || new Set()
     this.draw()
   }
 }
