@@ -358,6 +358,7 @@ class SkillPlanner {
     updateNodeVisibility()
     updateNodeEffects()
     updateInterface()
+    this.saveSession()
   }
 
   // Draw planner; calls state change internally
@@ -461,9 +462,22 @@ class SkillPlanner {
     let file = image.replace('image/png', 'image/octet-stream')
     window.location.href = file
   }
+
+  saveSession () {
+    let session = JSON.stringify([...this.active])
+    window.sessionStorage.setItem('active', session)
+  }
+
+  loadSesssion () {
+    let session = window.sessionStorage.getItem('active')
+    if (session) {
+      this.active = new Set(JSON.parse(session))
+    }
+  }
 }
 
 const planner = new SkillPlanner()
 planner.loadData(() => {
+  planner.loadSesssion()
   planner.draw()
 })
