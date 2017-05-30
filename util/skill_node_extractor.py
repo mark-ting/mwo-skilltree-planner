@@ -26,39 +26,39 @@ LOCALE_ROOT = LOCALE_TREE.getroot()
 
 def map_node_effects():
     """
-    Map Base Node IDs to node effects
+    Map Node Groups (IDs) to node effects
     """
     node_effects = {}
-    base_node_id = 0
+    node_group_id = 0
 
-    for base_node in NODE_ROOT.iter('Node'):
+    for node_group in NODE_ROOT.iter('Node'):
         effects = []
-        for effect in base_node.iter('Effect'):
+        for effect in node_group.iter('Effect'):
             effects.append(effect.attrib['name'])
 
-        node_effects[base_node_id] = effects
-        base_node_id += 1
+        node_effects[node_group_id] = effects
+        node_group_id += 1
 
     return node_effects
 
 
 def map_node_variants():
     """
-    Map Variant Nodes and Names to Base Node IDs
+    Map Variant Nodes and Names
     """
     variants = {}
     node_id = 0
-    base_node_id = 0
+    node_group_id = 0
 
-    for base_node in NODE_ROOT.iter('Node'):
-        node_variants = base_node.attrib['names'].split(',')
+    for node_group in NODE_ROOT.iter('Node'):
+        node_variants = node_group.attrib['names'].split(',')
         for variant in node_variants:
             variants[variant] = {
                 'id': node_id,
-                'base': base_node_id
+                'group': node_group_id
             }
             node_id += 1
-        base_node_id += 1
+        node_group_id += 1
 
     return variants
 
@@ -318,8 +318,8 @@ def export_skill_tree():
     for name in variants:
         name_upper = name.upper()
         node_id = variants[name]['id']
-        base_id = variants[name]['base']
-        node_effects = effects[base_id]
+        group_id = variants[name]['group']
+        node_effects = effects[group_id]
         node_col = locations[name]['col']
         node_row = locations[name]['row']
         local = localizations[name_upper]
@@ -339,6 +339,7 @@ def export_skill_tree():
         tree[node_category]['nodes'][node_id] = {
             'name': node_name,
             'desc': node_desc,
+            'group': group_id,
             'col': node_col,
             'row': node_row,
             'effects': node_effects,

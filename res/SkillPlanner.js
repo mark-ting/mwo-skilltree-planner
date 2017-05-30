@@ -6,6 +6,7 @@ class SkillPlanner {
 
     // Skill tree data
     this.skills = {}
+    this.groups = {}
     this.coords = {}
     this.links = {}
     this.tree = {}
@@ -202,6 +203,15 @@ class SkillPlanner {
 
         for (let id in this.skills) {
           let skill = this.skills[id]
+
+          // Add node to group
+          let group = skill['group']
+          if (this.groups[group]) {
+            this.groups[group].add(id)
+          } else {
+            this.groups[group] = new Set([id])
+          }
+
           // Process node links
           this.links[id] = []
           let links = skill.links
