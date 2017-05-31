@@ -23,7 +23,7 @@ One of the following web browsers:
 * Firefox 45+
 * Chrome 56+
 * Safari 9+
-* Any other browser that supports ES6 `...spread` operators `classes` (Sorry IE11!)
+* Any other browser that supports ES6 `classes`, `Sets`, and `...spread` operators (Sorry IE11!)
 
 ___
 
@@ -32,8 +32,7 @@ Data Extraction
 
 ### Dependencies: ###
 * Node.js 6.x+ (7.x recommended)
-* Python 3.6+ with `lxml`
-* ES6 compliant web-browser (Chrome)
+* Python 3.6+ with `lxml2` (`xpath` required)
 
 ### Considerations: ###
 * Extract commands must be run in the listed order to succeed!
@@ -44,9 +43,9 @@ Data Extraction
 ### Automatic Extraction: ###
 * Run `npm install`
 * Run `npm run ext-all`
-* `SkillTreeFinal.json` is ready to use with the Planner (see `latest.json` in `public/data/`)
+* `latest.json` and `locale.json` are now ready to use with the Planner (move to `public/data/`)
 
-### Manual Extraction: ###
+### Manual (Step-by-step) Extraction: ###
 * Run `npm install`
 * Run `node ./util/generateLinks.js` to generate `NodeLinks.json`
 * Run `node ./util/generateCategories.js` to generate `NodeCategories.json`
