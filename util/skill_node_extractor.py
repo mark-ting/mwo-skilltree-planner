@@ -251,7 +251,7 @@ def map_effect_localizations():
         local_name = name_row.getchildren()[1][0].text
 
         localizations[name] = {}
-        localizations[name] = local_name
+        localizations[name] = local_name.upper()
 
     return localizations
 
