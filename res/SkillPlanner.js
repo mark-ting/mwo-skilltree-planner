@@ -37,7 +37,7 @@ class SkillPlanner {
     this.visiblePossible = new Set()
     this.effects = {}
     this.mouseDown = false
-    this.prevHexId = null
+    this.prevNodeId = null
   }
 
   initGrid () {
@@ -66,16 +66,16 @@ class SkillPlanner {
 
     let onMouseMove = (e) => {
       e.preventDefault()
-      if (this.mouseDown) {
+      if (this.mouseDown && !e.ctrlKey) {
         let point = hexGrid.getCursorCanvasPoint(e)
         let hex = hexGrid.getHexAtPoint(point)
 
         if (hex) {
-          let hexId = this.skillHexToId(hex)
+          let nodeId = this.hexToNodeId(hex)
 
-          if (hexId !== this.prevHexId) {
-            this.toggleNode(hexId)
-            this.prevHexId = hexId
+          if (nodeId !== this.prevNodeId) {
+            this.toggleNode(nodeId)
+            this.prevNodeId = nodeId
           }
         }
       }
@@ -87,26 +87,25 @@ class SkillPlanner {
       let hex = hexGrid.getHexAtPoint(point)
 
       if (hex) {
-        let hexId = this.skillHexToId(hex)
+        let nodeId = this.hexToNodeId(hex)
 
         if (e.ctrlKey) {
-          let activate = !this.active.has(hexId)
-          let nodeGroup = this.groups[this.skills[hexId].group]
-          for (let node of nodeGroup) {
-            if (activate) {
-              this.activateNode(node)
-            } else {
-              this.deactivateNode(node)
-            }
+          let activate = !this.active.has(nodeId)
+          let nodeGroupId = this.skills[nodeId].group
+
+          if (activate) {
+            this.activateNodeGroup(nodeGroupId)
+          } else {
+            this.deactivateNodeGroup(nodeGroupId)
           }
         } else {
-          if (hexId !== this.prevHexId) {
-            this.toggleNode(hexId)
-            this.prevHexId = hexId
+          if (nodeId !== this.prevNodeId) {
+            this.toggleNode(nodeId)
+            this.prevNodeId = nodeId
           }
         }
       }
-      this.prevHexId = null
+      this.prevNodeId = null
       this.mouseDown = false
     }
 
@@ -273,13 +272,13 @@ class SkillPlanner {
     })
   }
 
-  skillIdToHex (id) {
+  nodeIdToHex (id) {
     let col = this.skills[id].col
     let row = this.skills[id].row
     return `(${col}, ${row})`
   }
 
-  skillHexToId (hex) {
+  hexToNodeId (hex) {
     let col = hex.col
     let row = hex.row
     return this.coords[this.category][`(${col}, ${row})`]
@@ -308,6 +307,18 @@ class SkillPlanner {
     // Ignore invalid/non-visible nodes
     if (!nodeId || !this.tree[this.category].nodes.has(nodeId)) { return }
     this.active.delete(nodeId)
+    this.draw()
+  }
+
+  activateNodeGroup (nodeGroupId) {
+    let nodeGroup = this.groups[nodeGroupId]
+    this.active = _su.union(this.active, nodeGroup)
+    this.draw()
+  }
+
+  deactivateNodeGroup (nodeGroupId) {
+    let nodeGroup = this.groups[nodeGroupId]
+    this.active = _su.difference(this.active, nodeGroup)
     this.draw()
   }
 
