@@ -29,7 +29,7 @@ ___
 
 Data Extraction
 ---
-
+a
 ### Dependencies: ###
 * Node.js 6.x+ (7.x recommended)
 * Python 3.6+ with `lxml2` (`xpath` required)
@@ -43,12 +43,12 @@ Data Extraction
 ### Automatic Extraction: ###
 * Run `npm install`
 * Run `npm run ext-all`
-* `latest.json` and `locale.json` are now ready to use with the Planner (move to `public/data/`)
+* `latest.json`, `locale.json`, and `values.json` are now ready to use with the Planner (move to `public/data/`)
 
 ### Manual (Step-by-step) Extraction: ###
 * Run `npm install`
 * Run `node ./util/generateLinks.js` to generate `NodeLinks.json`
 * Run `node ./util/generateCategories.js` to generate `NodeCategories.json`
-* Run `python ./util/skill_node_extractor.py` to generate component `Extracted_.json` files, `SkillTree.json`, and `locale.json`
+* Run `python ./util/skill_node_extractor.py` to generate component `Extracted_.json` files, `SkillTree.json`, `locale.json`, and `values.json`
 * Run `node ./util/offsetTree.js` to generate `latest.json`
-* `latest.json` and `locale.json` are now ready to use with the Planner (move to `public/data/`)
+* `latest.json`, `locale.json`, and `values.json` are now ready to use with the Planner (move to `public/data/`)

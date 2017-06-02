@@ -10,6 +10,7 @@ class SkillPlanner {
     this.coords = {}
     this.links = {}
     this.tree = {}
+    this.values = {}
     this.locale = {}
     this.colors = {}
 
@@ -36,8 +37,16 @@ class SkillPlanner {
     this.visibleOrphan = new Set()
     this.visiblePossible = new Set()
     this.effects = {}
+    this.effectValues = {}
     this.mouseDown = false
     this.prevNodeId = null
+
+    this.mech = {
+      // TODO: add mech variation options in UI; use IS LCT for now
+      faction: 'IS',
+      weight: 'Light',
+      tons: '20'
+    }
   }
 
   initGrid () {
@@ -245,10 +254,56 @@ class SkillPlanner {
         console.error(err)
       })
 
-    Promise.all([loadColors, loadSkills, loadLocale])
+    let loadValues = this.getJSON('./data/values.json')
+      .then((values) => {
+        this.values = values
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+
+    Promise.all([loadColors, loadSkills, loadLocale, loadValues])
       .then(() => {
         typeof cb === 'function' && cb()
       })
+  }
+
+  setEffectValues () {
+    let traverseValue = (effectValue) => {
+      let value = effectValue
+      if (typeof value === 'number') {
+        return effectValue
+      }
+
+      value = effectValue['factions'][this.mech.faction]
+      if (typeof value === 'undefined') {
+        return 0
+      }
+
+      if (typeof value === 'number') {
+        return value
+      }
+
+      value = value[this.mech.weight]
+      if (typeof value === 'undefined') {
+        return 0
+      }
+
+      if (typeof value === 'number') {
+        return value
+      }
+
+      value = value[this.mech.tons]
+      if (typeof value === 'undefined') {
+        return 0
+      }
+
+      return value
+    }
+
+    for (let effect in this.values) {
+      this.effectValues[effect] = traverseValue(this.values[effect])
+    }
   }
 
   bind (action, fn, ctx) {
@@ -329,7 +384,8 @@ class SkillPlanner {
     this.hexGrid.drawHexCell(col, row, this.colors['cell'][state])
 
     let name = skill.name
-    let text = (name.length > 12) ? strWrap(name) : name
+    let labelWrapLen = 12
+    let text = (name.length > labelWrapLen) ? strWrap(name) : name
     this.hexGrid.drawHexLabel(col, row, text, undefined, this.colors['label'][state])
   }
 
@@ -403,8 +459,12 @@ class SkillPlanner {
       let effectText = ''
       for (let effect in this.effects) {
         // TODO: load proper values later!
-        let effectValue = 1
-        effectText += `${this.locale[effect]}: ${this.effects[effect] * effectValue}\n`
+        let effectValue = this.effectValues[effect]
+        if (effectValue) {
+          let effectName = this.locale[effect]
+          let effectValueString = (effectValue > 0 ? '+' : '') + effectValue
+          effectText += `${effectName}: ${effectValueString}\n`
+        }
       }
       document.getElementById('effects-display').value = effectText
     }
@@ -523,7 +583,7 @@ class SkillPlanner {
     window.sessionStorage.setItem('active', session)
   }
 
-  loadSesssion () {
+  loadSession () {
     let session = window.sessionStorage.getItem('active')
     if (session) {
       this.active = new Set(JSON.parse(session))
@@ -542,6 +602,7 @@ class SkillPlanner {
 
 const planner = new SkillPlanner()
 planner.loadData(() => {
-  planner.loadSesssion()
+  planner.loadSession()
+  planner.setEffectValues()
   planner.draw()
 })

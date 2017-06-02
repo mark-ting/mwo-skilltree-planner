@@ -349,6 +349,8 @@ def export_skill_tree():
     with open('out/SkillTree.json', 'w') as skilltree_json:
         skilltree_json.write(json.dumps(tree, indent=2))
 
+    with open('out/values.json', 'w') as values_json:
+        values_json.write(json.dumps(map_effect_values()))
 
 if __name__ == "__main__":
     print('Exporting Component Skill Tree Data...')
