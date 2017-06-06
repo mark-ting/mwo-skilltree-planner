@@ -458,8 +458,8 @@ class SkillPlanner {
 
       let effectText = ''
       for (let effect in this.effects) {
-        // TODO: load proper values later!
-        let effectValue = this.effectValues[effect]
+        let effectCount = this.effects[effect]
+        let effectValue = this.effectValues[effect] * effectCount
         if (effectValue) {
           let effectName = this.locale[effect]
           let effectValueString = (effectValue > 0 ? '+' : '') + effectValue
